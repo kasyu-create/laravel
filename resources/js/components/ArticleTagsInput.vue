@@ -21,22 +21,15 @@ export default {
       type: Array,
       default: [],
     },
+        autocompleteItems: {
+      type: Array,
+      default: [],
+    },
   },
   data() {
     return {
       tag: '',
       tags: this.initialTags, 
-      autocompleteItems: [{
-        text: 'Spain',
-      }, {
-        text: 'France',
-      }, {
-        text: 'USA',
-      }, {
-        text: 'Germany',
-      }, {
-        text: 'China',
-      }],
     };
   },
   computed: {
@@ -64,5 +57,8 @@ export default {
     margin-right: 4px;
     border-radius: 0px;
     font-size: 13px;
+  }
+  .vue-tags-input .ti-tag::before {
+    content: "#";
   }
 </style>
