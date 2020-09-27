@@ -19,6 +19,10 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->bigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            // foreignは外部キーを使うという意味。元々foreign key = 外部キーという意味である。
+            // 上記の意味としては、articlesテーブルのuser_idカラムは、usersテーブルのidカラムを参照することという制約。
+            //こうすることで、articlesテーブルのuser_idカラムには、usersテーブルに存在するidと同じ値しか入れられなくなります。
+            //つまり、「記事は存在するけれど、それを投稿したユーザーが存在しない」という状態を作れないようになります。
             $table->timestamps();
         });
     }
