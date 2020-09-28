@@ -55,6 +55,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        //required = 必須 unique:users = userテーブルの他のメールアドレスと被らない事 confirmed = 自分の項目名_confirmedという別の項目(つまり、password_confirmedという項目)と同じ値であること
+        //alpha_numは、英数字であるかをチェック 
     }
 
     /**

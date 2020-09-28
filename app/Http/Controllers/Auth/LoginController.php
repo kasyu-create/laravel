@@ -20,7 +20,8 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
+    //こちらがログアウトのルーティングとなり、LoginControllerのlogoutアクションメソッドで処理を行います。しかし、コードを上から下まで眺めてみるとわかると思いますが、logoutアクションメソッドは存在しません。
+    //use AuthenticatesUsersとありますが、このAuthenticatesUsersトレイトの中にlogoutアクションメソッドが定義されています。
     /**
      * Where to redirect users after login.
      *

@@ -16,6 +16,8 @@
             <div class="card-text">
               <form method="POST" action="{{ route('register') }}">
                 @csrf
+                {{-- csrfは、Cross-Site Request Forgeries(クロスサイト・リクエスト・フォージェリ)というWebアプリケーションの脆弱性の略称で、上記の@csrfはこの脆弱性からWebサービスを守るためのトークン情報です。 --}}
+                {{-- Laravelでは、クライアントからのPOSTメソッドのリクエストを受け付ける際に、リクエスト中のこのトークン情報の内容を見て、不正なリクエストでないかどうかをチェックします。POSTメソッドであるリクエストにこのトークン情報が無いと、Laravelではエラーをレスポンスします。ですので、POST送信を行うBladeには@csrfを含めるようにしてください。 --}}
                 <div class="md-form">
                   <label for="name">ユーザー名</label>
                   <input class="form-control" type="text" id="name" name="name" required value="{{ old('name') }}">
@@ -25,6 +27,9 @@
                   <label for="email">メールアドレス</label>
                   <input class="form-control" type="text" id="email" name="email" required value="{{ old('email') }}" >
                 </div>
+                {{-- old関数は、引数にパラメータ名を渡すと、直前のリクエストのパラメータ（値と言う意味）を返します。ユーザー登録処理でバリデーションエラーになると再びユーザー登録画面が表示されますが、特に何も対応していなかった場合、全ての項目が空で表示されて入力を最初からやり直さなければなりません。old関数を使うことで、入力した内容が保持された状態でユーザー登録画面が表示されるようになり、ユーザーはエラーになった箇所だけを修正すれば良くなります。 --}}
+
+                {{-- ただし、passwordとpassword_confirmationはold関数を使ってもnullが返ります。そのため、これら入力項目のinputタグに対してはold関数を使っていません。 --}}
                 <div class="md-form">
                   <label for="password">パスワード</label>
                   <input class="form-control" type="password" id="password" name="password" required>

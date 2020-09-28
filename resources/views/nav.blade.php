@@ -10,6 +10,8 @@
     </li>
     @endguest
 
+    {{-- @guestから@endguestに囲まれた部分は、ユーザーがまだログインしていない状態の時のみ処理されます。 --}}
+
     @guest 
     <li class="nav-item">
       <a class="nav-link" href="{{ route('login') }}">ログイン</a> 
@@ -21,6 +23,8 @@
       <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
     </li>
   @endauth
+
+  {{-- 逆に@authから@endauthに囲まれた部分は、ユーザーがログイン済みの状態の時のみ処理されます。 --}}
 
   @auth
     <!-- Dropdown -->
@@ -40,6 +44,9 @@
         </button>
       </div>
     </li>
+
+    {{-- なお、今回ログアウトのbuttonタグをformタグの配下に置かないようにしています。この理由は、ドロップダウンメニューのliタグ内にformタグを配置すると、本教材で使用しているMDBootstrapの仕様でドロップダウンメニューのレイアウトが崩れてしまう(横幅が大きくなる)ためです。そこで、formタグはliタグの外に配置し、formタグのid属性と、buttonタグのform属性それぞれに"logout-button"という値を与え、両者を関連付けるようにしています。 --}}
+
     <form id="logout-button" method="POST" action="{{ route('logout')}}">
     @csrf
     </form>
