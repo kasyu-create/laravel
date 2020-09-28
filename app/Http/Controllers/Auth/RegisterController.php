@@ -23,13 +23,14 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    //ユーザー登録画面表示およびユーザー登録処理を行うコントローラーはこのコントローラーだが、showRegistrationFormアクションメソッドとregisterアクションメソッド、そのどちらも存在しない。上記にuse RegistersUsersとありますが、このRegistersUsersトレイトの中にshowRegistrationFormアクションメソッドとregisterアクションメソッドが定義されている。
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    //ありました。RouteServiceProviderクラスのHOMEという定数が代入されています。続いて、このRouteServiceProviderクラスのコードを見てみます。
 
     /**
      * Create a new controller instance.

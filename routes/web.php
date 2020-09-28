@@ -15,6 +15,7 @@
 //     return view('welcome');
 // });
 Auth::routes(); 
+//vendor/laravel/framework/src/Illuminate/Routing/Router.phpに記述されているauthメソッドを呼び出してる
 Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('/articles','ArticleController')->except(['index','show'])->middleware('auth');
 Route::resource('/articles', 'ArticleController')->only(['show']);

@@ -22,6 +22,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/';
+    //HOMEという定数が定義されており、その値は'/home'というパスになっています。ここがログイン後のURLを変更する所です。
+    //ここで1章のパート2でやったことを思い出して欲しいのですが、記事一覧画面をトップページという位置付けにするため、そのURLは/にしました。
 
     /**
      * Define your route model bindings, pattern filters, etc.
