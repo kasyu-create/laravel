@@ -14,6 +14,8 @@ class ArticleController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Article::class, 'article');
+        //PHPのクラスでは、__constructメソッドを定義すると、クラスのインスタンスが生成された時に初期処理として特に呼び出さなくても必ず実行されます。詳細は教材5-5へ
+        //authorizeResourceメソッドこの詳細も教材5-5へ、上記の記述でArtcleControllerで、ArtclePolicyを使うように設定
     }
     public function index()
     {
@@ -68,6 +70,7 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all())->save();
+        //storeアクションに同じ
         $article->tags()->detach();
         $request->tags->each(function ($tagName) use ($article) {
             $tag = Tag::firstOrCreate(['name' => $tagName]);

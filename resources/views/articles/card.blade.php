@@ -59,6 +59,7 @@
     <h3 class="h4 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}
+        {{--show画面へ行くaタグ--}}
       </a>
     </h3>
     <div class="card-text">
