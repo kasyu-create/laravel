@@ -6,6 +6,7 @@ use App\Article;
 //Articleモデルが使えるように設定
 use App\Tag;
 use App\Http\Requests\ArticleRequest;
+//バリデーションを設定したArticleRequest.phpが使えるように修正。
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -33,7 +34,15 @@ class ArticleController extends Controller
     }
     public function store(ArticleRequest $request,Article $article)
     {
+    //引数$requestはArticleRequestクラスのインスタンスである、ということを宣言(型宣言)
+    //ArticleRequestクラスのインスタンス以外のものが渡されるとTypeErrorという例外が発生して処理は中断します。
+    //宣言する型の種類には、クラスのインスタンスのほか、整数(int)、文字列(string)、配列(array)などが使えます(他にもあります)。
+
+    //Laravelのコントローラーはメソッドの引数で型宣言を行うと、そのクラスのインスタンスが自動で生成されてメソッド内で使えるようになります。
+    //このようにメソッドの内部で他のクラスのインスタンスを生成するのではなく、外で生成されたクラスのインスタンスをメソッドの引数として受け取る流れをDI(Dependency Injection)と言います。
         $article->fill($request->all());
+        //リクエストのallメソッドを使うことで、記事投稿画面から送信されたPOSTリクエストのパラメータを以下のように配列で取得できます。
+        //["_token" => "CdU7HghsXIOi14n7UnwCeOALRPGiVkMegZmK6RDc","title" => "Techpitとは","body" => "Techpitは「現役エンジニアが作った」学習コンテンツで「作りながら」プログラミングが学べる学習サービスです。",]
         $article->user_id = $request->user()->id;
         $article->save();
         $request->tags->each(function ($tagName) use ($article) {

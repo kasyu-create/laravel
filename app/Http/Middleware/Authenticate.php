@@ -17,5 +17,6 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+        //上記のredirectToメソッドの戻り値によって、リダイレクト先が決まります。もしリダイレクト先をログイン画面以外にしたい場合は、route('login')の部分を変更してください。
     }
 }

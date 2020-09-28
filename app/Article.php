@@ -16,6 +16,9 @@ class Article extends Model
         'title',
         'body',
     ];
+    //ArticleモデルのfillメソッドArtcleモデルのfillableプロパティ内に指定しておいたプロパティ(ここではtitleとbody)のみが、$articleの各プロパティに代入されます。
+
+    //fillableプロパティを使うことでどういったメリットは不正なリクエストへの対策＝更新しても良いプロパティは、titleとbodyのみと制限されるようになりました。
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');

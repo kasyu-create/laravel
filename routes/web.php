@@ -18,6 +18,10 @@ Auth::routes();
 //vendor/laravel/framework/src/Illuminate/Routing/Router.phpに記述されているauthメソッドを呼び出してる
 Route::get('/', 'ArticleController@index')->name('articles.index');
 Route::resource('/articles','ArticleController')->except(['index','show'])->middleware('auth');
+//Laravelにはミドルウェアという仕組みがあり、クライアントからのリクエストに対して、リクエストをコントローラーで処理する前あるいは後のタイミングで何らかの処理を行うことができます。
+//authミドルウェアは、リクエストをコントローラーで処理する前にユーザーがログイン済みであるかどうかをチェックし、ログインしていなければユーザーをログイン画面へリダイレクトします。既にログイン済みであれば、コントローラーでの処理が行われます。
+//各ルーティングでどのようなミドルウェアが使われているかは、php artisan route:listで確認することもできます。
+//authミドルウェアの設定は、app/Http/Middlewareディレクトリの、Authenticate.php
 Route::resource('/articles', 'ArticleController')->only(['show']);
 Route::prefix('articles')->name('articles.')->group(function () {
   Route::put('/{article}/like', 'ArticleController@like')->name('like')->middleware('auth');

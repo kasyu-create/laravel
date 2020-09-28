@@ -14,6 +14,7 @@ class ArticleRequest extends FormRequest
     public function authorize()
     {
         return true;
+        //ここはtrueに変更しているが、falseのままだったらエラーとなる。なぜtrueにしたかの詳細は4-4章で記載しています。
     }
 
     /**
@@ -28,6 +29,7 @@ class ArticleRequest extends FormRequest
             'body'=>'required|max:500',
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
+        //フォームリクエストでは、記事投稿画面や記事更新画面から送信された記事タイトルや記事本文のバリデーションなどを行います。rulesメソッドでは、バリデーションのルールを定義します。
     }
     public function attributes()
     {
@@ -36,6 +38,7 @@ class ArticleRequest extends FormRequest
             'body'=>'本文',
             'tags' => 'タグ',
         ];
+        //attributesメソッドでは、バリデーションエラーメッセージに表示される項目名をカスタマイズできます。
     }
     public function passedValidation()
     {
