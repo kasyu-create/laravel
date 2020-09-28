@@ -32,6 +32,7 @@ return [
     */
 
     'lifetime' => env('SESSION_LIFETIME', 120),
+    //ユーザーが無操作の状態でログインが維持される時間は120分となります。
 
     'expire_on_close' => false,
 
